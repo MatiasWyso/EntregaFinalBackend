@@ -1,0 +1,46 @@
+<div>
+  {{#if isLogin}}
+  <h3>Bienvenido {{user.role}}:{{user.first_name}}</h3>
+  {{/if}}
+  <div>
+  <button style="position: absolute;top: 20px;right: 20px;" onclick={logout()}>Logout</button>
+  </div>
+  <h1>Products</h1>
+  <a href="/cart/63f12e9a3dcd14466d2d0ed7">Ver Carrito<a></a>
+</div>
+<div class="productsContainer">
+    {{#if payload}}
+{{#each payload}}
+    <div>
+      <img
+        src="{{this.thumbnails}}"
+        style="aspect-ratio: 1; width: 200px; object-fit: cover;"
+      />
+      <h3>{{this.title}}</h3>
+      <p>{{this.description}}</p>
+      <p>Categoria:{{this.category}}</p>
+      <h4>${{this.price}}</h4>
+        <button onclick={addToCart("{{this._id}}")}>Add to cart</button>
+
+    </div>
+  {{/each}}
+</div>
+
+<div>
+    {{#if hasPrevPage}}
+  <a href="{{prevLink}}"><button>Anterior</button></a>
+    {{/if}}
+  <div>
+   <p>pagina:{{resPage}} / {{totalPages}} </p>
+  </div>
+      {{#if hasNextPage}}
+  <a href="{{nextLink}}"><button>Siguiente</button></a>
+    {{/if}}
+</div>
+{{else}}
+     <h3>La pagina solicitada no existe</h3>
+    {{/if}}
+  
+
+<script src="/index.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

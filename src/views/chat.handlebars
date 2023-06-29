@@ -1,0 +1,23 @@
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+/>
+<h2>Creacion de un chat con Websocket</h2>
+<div class="panel">
+  <div id="chatHistory"></div>
+  <form id="form">
+    {{! <input type="text" name="mensaje" id="mensaje" /> }}
+    <textarea name="" id="mensaje" cols="30" rows="2"></textarea>
+    <input type="submit" id="button" value="Enviar" />
+  </form>
+</div>
+<button id="cleanHistory">Borrar historial</button>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/toastify-js"
+></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="main.js"></script>

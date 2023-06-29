@@ -1,0 +1,146 @@
+paths:
+  /api/cart:
+    get:
+      summary: Obteniene todos los carritos
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Los carritos se entregaron de la base de datos
+        "500": 
+          description: Error del servidor
+    post:
+      summary: Crea un carrito
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: El carrito fue creado exitosamente
+        "500": 
+          description: Error del servidor
+  /api/cart/:cid:
+    get:
+      summary: Obtiene el carrito que posee el cid
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: El carrito se entrego exitosamente
+        "400":
+          description: El cid proporcionado no es válido
+        "500":
+          description: Error del servidor
+    delete:
+      summary: Elimina el carrito proporcionado
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: El carrito fue eliminado exitosamente
+        "400":
+          description: El carrito no existe
+        "500": 
+          description: Error del servidor
+  /api/cart/:cid/products:
+    put:
+      summary: Agrega un arrai de productos al carrito
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Se agregaron los productos exitosamente
+        "404":
+          description: El carrito no existe o alguno de los productos no existe
+        "500": 
+          description: Error del servidor
+    delete:
+      summary: Elimina un todos los productos del carrito proporcionado
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Se eliminaron todos los productos del carrito exitosamente
+        "404":
+          description: El carrito no existe
+        "500": 
+          description: Error del servidor
+  /api/cart/:cid/products/:pid:
+    post:
+      summary: Agrega el producto pid al carrito
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Se agrago el producto exitosamente
+        "400":
+          description: El carrito o el producto no existe
+        "500":
+          description: Error del servidor
+    put:
+      summary: Modifica la cantidad de un producto determinado dentro de un carrito
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: La cantidad del producto se modificó exitosamente
+        "404":
+          description: El carrito no existe o el producto no existe dentro del carrito
+        "500": 
+          description: Error del servidor
+    delete:
+      summary: Elimina un producto del carrito proporcionado
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Se quio el producto del carrito exitosamente
+        "404":
+          description: El carrito no existen, o el producto no existe dentro del carrito
+        "500": 
+          description: Error del servidor
+  /api/cart/:cid/purchase:
+    post:
+      summary: Crea la transaccion y elimina los productos comprados del carrito
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: La transaccion se realizó exitosamente
+        "400":
+          description: No se pudo comprar ningun producto
+        "500":
+          description: Error del servidor
+
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID autogenerado
+        products:
+          type: array
+          description: Arreglo de los productos del carrito
+          items:
+            type: object
+            properties:
+              _id:
+                type: ObjectId
+                description: ID del producto
+              quantity:
+                type: Number
+                description: Cantidad del producto
+      example:
+        _id: "63f12e9a3dcd14466d2d0ed7"
+        products:
+          [
+            {
+              "product": "63eaceed33619d436571b402",
+              "quantity": 2,
+            },
+            {
+              "product": "63e41ebb7c18d64e82481157",
+              "quantity": 2,
+            }
+          ]

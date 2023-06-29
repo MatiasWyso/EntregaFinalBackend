@@ -1,0 +1,10 @@
+<div>
+  <div><p>First name: </p>{{user.first_name}}</div>
+  <div><p>Last name: </p>{{user.last_name}}</div>
+  <div><p>Email: </p>{{user.email}}</div>
+    {{#if isAdmin}}
+            <p>Tu rol es administrador</p>
+    {{else}}
+        <button onclick="swapRole()">Cambia a {{#if isPremium}}usuario corriente{{else}}usuario premium{{/if}}</button>
+    {{/if}}
+</div>

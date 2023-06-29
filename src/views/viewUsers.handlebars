@@ -1,0 +1,23 @@
+<div>
+    <h1>Gestionar usuarios</h1>
+</div>
+<div>
+    <div id="productsList">
+        {{#each users}}
+            <div>
+                <a onclick="deleteUser('{{email}}')">Eliminar</a>
+                <div >
+                    <img src="{{thumbnail}}" alt="{{full_name}}" style="aspect-ratio: 1; width: 200px; object-fit: cover;"/>
+                </div>
+                <h2>{{full_name}}</h2>
+                <h2>Rol {{role}}</h2>
+                <p>Email {{email}}</p>
+                <p>ID: {{id}}</p>
+                <p>Cart: {{cart}}</p>
+                <button onclick="swapRole('{{email}}')">Cambiar rol</button>
+            </div>
+        {{/each}}
+    </div>
+</div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/viewUsers.js"></script>

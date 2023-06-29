@@ -1,0 +1,33 @@
+const form = document.getElementById("postDocumentsForm");
+
+const email = document.getElementById("userEmail").innerHTML;
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const data = new FormData(form);
+
+  fetch(`/api/session/${email}/reviewDocuments`, { method: "POST", body: data })
+    .then((response) => response.json())
+    .then((json) => {
+      if (json.status == "Ok") {
+        fetch(`/api/session/${email}/documents`, { method: "POST", body: data })
+          .then((response) => response.json())
+          .then((json) => {
+            console.log(json);
+            if (json.status == "Ok")
+              Swal.fire({
+                icon: "success",
+                title: "Archivos subidos correctamente",
+              });
+            else Swal.fire({ icon: "error", title: json.message });
+          });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Hay campos repetidos",
+          text: json.message,
+        });
+      }
+    });
+});

@@ -1,0 +1,19 @@
+<div>
+  <h1>cart</h1>
+</div>
+
+<div>
+  {{#each cart.products}}
+    <div>
+      <img
+        src="{{product.thumbnails}}"
+        alt="{{product.title}}"
+        style="aspect-ratio: 1; width: 200px; object-fit: cover;"
+      />
+
+      <h2>Name: {{product.title}}</h2>
+      <h3>Price: ${{product.price}}</h3>
+      <p>Quantity: {{quantity}}</p>
+    </div>
+  {{/each}}
+</div>
